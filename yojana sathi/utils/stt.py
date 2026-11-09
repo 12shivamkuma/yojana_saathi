@@ -6,6 +6,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GNANI_API_KEY = os.getenv("GNANI_API_KEY")
+
+
+if not GNANI_API_KEY:
+    try:
+        GNANI_API_KEY = st.secrets["GNANI_API_KEY"]
+    except Exception:
+        GNANI_API_KEY = None
 print("API key loaded:", bool(GNANI_API_KEY))
 print("API key length:", len(GNANI_API_KEY) if GNANI_API_KEY else 0)
 
