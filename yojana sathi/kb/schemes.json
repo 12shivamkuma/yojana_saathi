@@ -1,0 +1,277 @@
+[
+  {
+    "id": "pm_kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "keywords": [
+      "farmer",
+      "kisan",
+      "agriculture",
+      "farming",
+      "खेती",
+      "किसान",
+      "कृषि",
+      "six thousand",
+      "6000"
+    ],
+    "description": "A Central Government income support scheme for eligible landholding farmer families.",
+    "benefits": [
+      "Eligible farmer families receive ₹6,000 per year.",
+      "The amount is transferred directly to beneficiary bank accounts in three equal installments."
+    ],
+    "eligibility": [
+      "The applicant should belong to an eligible landholding farmer family.",
+      "The family must not fall under the scheme's exclusion categories."
+    ],
+    "important_conditions": [
+      "Certain government employees, income-tax payers, institutional landholders and specified professionals are excluded.",
+      "eKYC is mandatory for registered beneficiaries.",
+      "Final eligibility is determined under official scheme guidelines by the relevant authorities."
+    ],
+    "official_website": "https://pmkisan.gov.in/"
+  },
+  {
+    "id": "ayushman_bharat",
+    "name": "Ayushman Bharat PM-JAY",
+    "keywords": [
+      "health",
+      "hospital",
+      "medical",
+      "treatment",
+      "health insurance",
+      "आयुष्मान",
+      "इलाज",
+      "अस्पताल",
+      "दवाई",
+      "बुजुर्ग",
+      "senior citizen"
+    ],
+    "description": "A Government of India health assurance scheme providing eligible beneficiaries with cashless hospital treatment.",
+    "benefits": [
+      "Eligible beneficiaries receive health coverage up to ₹5 lakh per family per year.",
+      "Treatment is available at empanelled hospitals.",
+      "Eligible senior citizens aged 70 years or above can receive coverage regardless of economic status."
+    ],
+    "eligibility": [
+      "Eligible families identified under the scheme's beneficiary criteria.",
+      "All senior citizens aged 70 years or above are eligible under the senior citizen expansion."
+    ],
+    "important_conditions": [
+      "Eligibility and enrolment should be verified through the official portal.",
+      "Treatment must be covered under the scheme and provided at an empanelled hospital.",
+      "Aadhaar-based eKYC is required for enrolment of eligible senior citizens aged 70 or above."
+    ],
+    "helpline": "14555",
+    "official_website": "https://nha.gov.in/"
+  },
+  {
+    "id": "pm_ujjwala",
+    "name": "Pradhan Mantri Ujjwala Yojana",
+    "keywords": [
+      "gas",
+      "lpg",
+      "cooking gas",
+      "cylinder",
+      "ujjwala",
+      "महिला",
+      "गैस",
+      "रसोई गैस",
+      "सिलेंडर"
+    ],
+    "description": "A Government of India scheme providing deposit-free LPG connections to eligible adult women from poor households.",
+    "benefits": [
+      "Deposit-free LPG connection for eligible applicants.",
+      "The scheme provides assistance towards the connection.",
+      "Eligible beneficiaries receive the first refill and stove as specified under scheme provisions."
+    ],
+    "eligibility": [
+      "The applicant must be a woman aged 18 years or above.",
+      "The applicant must belong to an eligible poor household.",
+      "There must be no existing LPG connection in the household."
+    ],
+    "important_conditions": [
+      "A prescribed deprivation declaration and required documents must be submitted.",
+      "The final application is subject to official verification."
+    ],
+    "official_website": "https://www.pmuy.gov.in/"
+  },
+
+{
+  "id": "pm_jan_dhan",
+  "name": "Pradhan Mantri Jan Dhan Yojana",
+  "keywords": [
+    "bank", "bank account", "zero balance", "jan dhan",
+    "financial inclusion", "बैंक", "खाता", "जन धन",
+    "बिना बैलेंस", "बैंक खाता"
+  ],
+  "description": "A financial inclusion scheme that provides access to basic banking services.",
+  "benefits": [
+    "Basic savings bank account without a minimum balance requirement.",
+    "RuPay debit card with applicable accident insurance cover.",
+    "Eligible account holders may receive an overdraft facility subject to conditions."
+  ],
+  "eligibility": [
+    "Individuals who do not have a bank account can open a basic account.",
+    "Overdraft and insurance benefits are subject to scheme and account conditions."
+  ],
+  "important_conditions": [
+    "Insurance coverage depends on applicable RuPay card conditions.",
+    "Overdraft is not automatic and requires eligibility verification."
+  ],
+  "official_website": "https://pmjdy.gov.in/"
+},
+{
+  "id": "mgnrega",
+  "name": "Mahatma Gandhi National Rural Employment Guarantee Scheme",
+  "keywords": [
+    "job", "employment", "work", "labour", "rural job",
+    "100 days", "mgnrega", "nrega",
+    "मनरेगा", "मजदूरी", "रोजगार", "100 दिन",
+    "ग्रामीण रोजगार"
+  ],
+  "description": "A rural employment guarantee programme providing wage employment to rural households.",
+  "benefits": [
+    "Provides a guarantee of up to 100 days of wage employment per financial year to eligible rural households.",
+    "Supports rural livelihood security through unskilled manual work."
+  ],
+  "eligibility": [
+    "The household must be in a rural area.",
+    "Adult household members willing to undertake unskilled manual work can register."
+  ],
+  "important_conditions": [
+    "A Job Card is required.",
+    "Employment is provided according to the scheme process and applicable rules."
+  ],
+  "official_website": "https://nrega.nic.in/"
+},
+{
+  "id": "pmay_g",
+  "name": "Pradhan Mantri Awas Yojana Gramin",
+  "keywords": [
+    "house", "home", "housing", "rural house", "pucca house",
+    "pmay", "pmay-g",
+    "घर", "मकान", "पक्का मकान", "आवास",
+    "ग्रामीण आवास", "घर बनाना"
+  ],
+  "description": "A rural housing scheme aimed at providing assistance to eligible rural households for construction of pucca houses.",
+  "benefits": [
+    "Financial assistance for construction of an eligible rural house.",
+    "Convergence with other eligible government facilities may be available."
+  ],
+  "eligibility": [
+    "Eligible rural households identified under the applicable selection and verification process.",
+    "Households must satisfy the scheme's housing deprivation and exclusion criteria."
+  ],
+  "important_conditions": [
+    "Selection and assistance depend on official verification and applicable guidelines.",
+    "The beneficiary should verify their status with the Gram Panchayat or relevant authorities."
+  ],
+  "official_website": "https://pmayg.nic.in/"
+},
+{
+  "id": "pm_vishwakarma",
+  "name": "PM Vishwakarma Yojana",
+  "keywords": [
+  "artisan", "craftsman", "carpenter", "blacksmith",
+  "tailor", "potter", "goldsmith", "mason",
+  "विश्वकर्मा", "कारीगर", "बढ़ई", "बढई",
+  "बढ़ई का काम", "लोहार", "दर्जी", "कुम्हार",
+  "राजमिस्त्री", "हस्तशिल्प"
+],
+  "description": "A scheme supporting traditional artisans and craftspeople who work with their hands and tools in specified traditional trades.",
+  "benefits": [
+    "Recognition through a PM Vishwakarma certificate and ID card.",
+    "Skill training and toolkit incentive.",
+    "Access to collateral-free credit support subject to scheme conditions.",
+    "Marketing and digital transaction incentives as specified by the scheme."
+  ],
+  "eligibility": [
+    "Artisans and craftspeople working in one of the 18 specified traditional trades.",
+    "Applicants must satisfy the scheme's age, registration and other eligibility conditions."
+  ],
+  "important_conditions": [
+    "Only specified trades are covered.",
+    "Registration and verification through the prescribed process are required."
+  ],
+  "official_website": "https://pmvishwakarma.gov.in/"
+},
+{
+  "id": "pm_svanidhi",
+  "name": "PM Street Vendor's AtmaNirbhar Nidhi",
+  "keywords": [
+  "street vendor", "small vendor", "street seller",
+  "vendor loan", "vegetable seller",
+  "ठेला", "ठेले", "ठेले पर", "रेहड़ी",
+  "फेरीवाला", "पटरी दुकानदार", "सब्जी",
+  "सब्जी बेचता", "सब्जी बेचने", "फल बेचता",
+  "छोटा दुकानदार"
+],
+  "description": "A scheme providing working capital credit support to eligible street vendors.",
+  "benefits": [
+    "Access to working capital loans under the scheme.",
+    "Incentives for eligible digital transactions.",
+    "Benefits for timely repayment according to scheme rules."
+  ],
+  "eligibility": [
+    "Street vendors covered by the scheme's eligibility and identification requirements.",
+    "Applicants must complete the prescribed verification process."
+  ],
+  "important_conditions": [
+    "Loan approval is subject to lender assessment and scheme rules.",
+    "Loan amounts and terms depend on the applicable scheme guidelines."
+  ],
+  "official_website": "https://pmsvanidhi.mohua.gov.in/"
+},
+{
+  "id": "pmegp",
+  "name": "Prime Minister Employment Generation Programme",
+  "keywords": [
+  "business", "startup", "small business",
+  "business loan", "new enterprise",
+  "छोटा बिजनेस", "बिजनेस शुरू", "अपना बिजनेस",
+  "नया बिजनेस", "व्यवसाय शुरू", "नया व्यवसाय",
+  "कारोबार शुरू", "स्वरोजगार", "व्यवसाय",
+  "उद्योग", "उद्यम", "दुकान शुरू"
+],
+  "description": "A credit-linked subsidy programme supporting eligible individuals in setting up new micro-enterprises in the non-farm sector.",
+  "benefits": [
+    "Bank-linked financial assistance for eligible new enterprises.",
+    "Margin money subsidy according to applicant category and project location.",
+    "Support for self-employment and enterprise creation."
+  ],
+  "eligibility": [
+    "Individuals above 18 years of age.",
+    "Only eligible new projects are considered.",
+    "Educational qualification requirements apply to projects above specified costs."
+  ],
+  "important_conditions": [
+    "Existing units and units that have already received certain government subsidies are generally not eligible for new-unit assistance.",
+    "Bank approval and scheme verification are required."
+  ],
+  "official_website": "https://pmegp.msme.gov.in/"
+},
+{
+  "id": "national_scholarship",
+  "name": "National Scholarship Portal Schemes",
+  "keywords": [
+    "scholarship", "student", "education", "college fees",
+    "school fees", "tuition", "study assistance",
+    "छात्रवृत्ति", "स्कॉलरशिप", "पढ़ाई", "शिक्षा",
+    "कॉलेज फीस", "स्कूल फीस", "छात्र", "विद्यार्थी"
+  ],
+  "description": "The National Scholarship Portal provides access to multiple central and other scholarship schemes for eligible students.",
+  "benefits": [
+    "Access to scholarship opportunities under participating schemes.",
+    "Financial assistance according to the specific scholarship's rules."
+  ],
+  "eligibility": [
+    "Eligibility depends on the selected scholarship scheme.",
+    "Academic, income, category and institution requirements may apply."
+  ],
+  "important_conditions": [
+    "Not every student qualifies for every scholarship.",
+    "Students should check the current academic year's application dates and eligibility on the portal."
+  ],
+  "official_website": "https://scholarships.gov.in/"
+}
+
+]
