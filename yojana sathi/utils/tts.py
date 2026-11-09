@@ -1,22 +1,27 @@
-import streamlit as st
+
 import os
+import streamlit as st
 from dotenv import load_dotenv
 from gnani.tts import GnaniTTSClient, AudioConfig
 
 load_dotenv()
 
-GNANI_API_KEY = os.getenv("GNANI_API_KEY")
+# Load API key locally or from Streamlit Cloud Secrets
+API_KEY = os.getenv("GNANI_API_KEY")
 
-if not GNANI_API_KEY:
+if not API_KEY:
     try:
-        GNANI_API_KEY = st.secrets["GNANI_API_KEY"]
+        API_KEY = st.secrets["GNANI_API_KEY"]
     except Exception:
-        GNANI_API_KEY = None
+        API_KEY = None
+
 
 def generate_speech(text, output_path="audio/response.wav"):
 
     if not API_KEY:
         raise ValueError("Gnani API key not found.")
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     client = GnaniTTSClient(api_key=API_KEY)
 
