@@ -1,3 +1,4 @@
+import math
 import os
 
 import streamlit as st
@@ -21,81 +22,159 @@ st.set_page_config(
 
 
 # ==================================================
-# 2. HELPER: RENDER HTML CORRECTLY
+# 2. HELPERS
 # ==================================================
-# WHY YOUR HTML WAS SHOWING AS TEXT:
-# Streamlit's st.markdown() follows Markdown rules. Any line indented by
-# 4 or more spaces is treated as a *code block*, and blank lines inside HTML
-# can also break the block. Your HTML/CSS strings were indented, so they
-# were printed as code instead of being rendered.
-# This helper removes the indentation and blank lines before rendering.
 
 def render_html(html: str) -> None:
+    """Render HTML safely: strips indentation/blank lines so Markdown
+    does not turn the HTML into a code block."""
     cleaned = "\n".join(
         line.strip() for line in html.splitlines() if line.strip()
     )
     st.markdown(cleaned, unsafe_allow_html=True)
 
 
+def chakra_svg(size: int = 64, color: str = "#1a237e") -> str:
+    """Ashoka Chakra drawn as SVG (works on every device, unlike the
+    flag emoji which shows as 'IN' on Windows)."""
+    spokes = ""
+    for i in range(24):
+        a = math.radians(i * 15)
+        x2 = 50 + 38 * math.cos(a)
+        y2 = 50 + 38 * math.sin(a)
+        spokes += (
+            f'<line x1="50" y1="50" x2="{x2:.1f}" y2="{y2:.1f}" '
+            f'stroke="{color}" stroke-width="2"/>'
+        )
+    return (
+        f'<svg width="{size}" height="{size}" viewBox="0 0 100 100" '
+        f'xmlns="http://www.w3.org/2000/svg">'
+        f'<circle cx="50" cy="50" r="42" fill="none" stroke="{color}" stroke-width="5"/>'
+        f'<circle cx="50" cy="50" r="6" fill="{color}"/>'
+        f'{spokes}</svg>'
+    )
+
+
 # ==================================================
-# 3. CUSTOM CSS
+# 3. CUSTOM CSS  (colors are forced so text is always visible,
+#    even if the browser or Streamlit is in dark mode)
 # ==================================================
 
 render_html(
     """
     <style>
 
-    /* Main background */
-    .stApp {
-        background: linear-gradient(180deg, #fffaf2 0%, #ffffff 50%, #f4faf5 100%);
+    /* ---------- Base: force light look ---------- */
+    :root, .stApp, [data-testid="stAppViewContainer"] {
+        color-scheme: light;
     }
+    .stApp {
+        background:
+            radial-gradient(circle at 0% 0%, #ffe7c7 0%, transparent 40%),
+            radial-gradient(circle at 100% 100%, #d9f2e0 0%, transparent 40%),
+            #fffaf2;
+    }
+    header[data-testid="stHeader"] {background: transparent;}
+    #MainMenu, footer {visibility: hidden;}
 
-    /* Main container */
     .block-container {
         max-width: 900px;
-        padding-top: 2rem;
+        padding-top: 1.5rem;
         padding-bottom: 2rem;
     }
 
-    /* Hide Streamlit branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-
-    /* Hero header */
-    .hero {
-        background: linear-gradient(120deg, #fff0dc, #ffffff, #eaf6ec);
-        border: 1px solid #f0e5d6;
-        border-radius: 22px;
-        padding: 35px 25px;
-        text-align: center;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-        margin-bottom: 22px;
+    /* ---------- Force readable text everywhere ---------- */
+    [data-testid="stMarkdownContainer"] h1,
+    [data-testid="stMarkdownContainer"] h2,
+    [data-testid="stMarkdownContainer"] h3,
+    [data-testid="stMarkdownContainer"] h4,
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] li,
+    [data-testid="stMarkdownContainer"] strong,
+    [data-testid="stWidgetLabel"] p,
+    label p {
+        color: #1f3d2b !important;
     }
-    .hero-icon {font-size: 48px; margin-bottom: 10px;}
+    [data-testid="stCaptionContainer"],
+    [data-testid="stCaptionContainer"] * {
+        color: #55665b !important;
+    }
+    [data-testid="stSpinner"] * {color: #1f3d2b !important;}
+
+    /* ---------- Hero ---------- */
+    .hero {
+        position: relative;
+        background: linear-gradient(135deg, #0f4c3a 0%, #166a4d 55%, #1f8a5b 100%);
+        border-radius: 26px;
+        padding: 36px 24px 30px 24px;
+        text-align: center;
+        box-shadow: 0 14px 34px rgba(15,76,58,0.28);
+        overflow: hidden;
+    }
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: -70px; right: -70px;
+        width: 220px; height: 220px;
+        border-radius: 50%;
+        background: rgba(255,153,51,0.35);
+    }
+    .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -80px; left: -60px;
+        width: 220px; height: 220px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.10);
+    }
+    .hero > * {position: relative; z-index: 1;}
+    .hero-badge {
+        width: 84px; height: 84px;
+        margin: 0 auto 14px auto;
+        background: #ffffff;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 4px solid #ff9933;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
     .hero-title {
-        color: #173d2b;
-        font-size: 40px;
+        color: #ffffff !important;
+        font-size: 46px;
         font-weight: 800;
-        margin: 0;
-        padding: 0;
         letter-spacing: -1px;
+        line-height: 1.1;
+        margin: 0;
     }
     .hero-subtitle {
-        color: #b65d17;
-        font-size: 20px;
+        color: #ffc46b !important;
+        font-size: 22px;
         font-weight: 700;
         margin-top: 10px;
     }
     .hero-description {
-        color: #58665e;
-        font-size: 15px;
+        color: #f1fff6 !important;
+        font-size: 16px;
         line-height: 1.8;
-        margin-top: 13px;
+        margin-top: 12px;
+    }
+    .chip-row {
+        display: flex; flex-wrap: wrap;
+        justify-content: center; gap: 10px;
+        margin-top: 20px;
+    }
+    .chip {
+        background: #ffffff;
+        color: #0f4c3a !important;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 7px 14px;
+        border-radius: 999px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
-    /* Tricolour line */
+    /* ---------- Tricolour line ---------- */
     .tricolour {
-        height: 5px;
+        height: 7px;
         border-radius: 10px;
         background: linear-gradient(
             to right,
@@ -103,79 +182,118 @@ render_html(
             #ffffff 33.33%, #ffffff 66.66%,
             #138808 66.66%, #138808 100%
         );
-        margin: 20px 0 28px 0;
-        border: 1px solid #eeeeee;
+        margin: 22px 0 28px 0;
+        border: 1px solid #e3e3e3;
     }
 
-    /* Section headings */
+    /* ---------- Section headings ---------- */
     .section-heading {
-        color: #173d2b;
-        font-size: 23px;
-        font-weight: 700;
-        margin-bottom: 5px;
+        color: #0f4c3a !important;
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 4px;
     }
     .section-description {
-        color: #748078;
-        font-size: 14px;
-        margin-bottom: 18px;
+        color: #55665b !important;
+        font-size: 15px;
+        margin-bottom: 16px;
     }
 
-    /* Bordered cards (st.container(border=True)) */
+    /* ---------- Cards (st.container(border=True)) ---------- */
     div[data-testid="stVerticalBlockBorderWrapper"] {
-        background-color: #ffffff;
-        border-radius: 17px;
-        box-shadow: 0 4px 16px rgba(20,60,35,0.05);
+        background: #ffffff;
+        border: 2px solid #ffd9a8;
+        border-radius: 20px;
+        box-shadow: 0 8px 22px rgba(232,121,36,0.12);
     }
 
-    /* Buttons */
+    /* ---------- Example prompt chips ---------- */
+    .example-label {
+        color: #55665b !important;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 6px 0 8px 0;
+    }
+    .example-chip {
+        display: inline-block;
+        background: #fff1de;
+        color: #9a4a0c !important;
+        border: 1px solid #ffd2a0;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 999px;
+        margin: 0 6px 8px 0;
+    }
+
+    /* ---------- Buttons ---------- */
     .stButton > button {
-        background: linear-gradient(90deg, #e87924, #f39b36);
-        color: white;
+        background: linear-gradient(90deg, #ff7a18, #ff9f1c);
         border: none;
-        border-radius: 12px;
-        min-height: 48px;
-        font-size: 16px;
-        font-weight: 700;
+        border-radius: 14px;
+        min-height: 54px;
         width: 100%;
+        box-shadow: 0 6px 16px rgba(255,122,24,0.35);
         transition: all 0.2s ease;
     }
+    .stButton > button p {
+        color: #ffffff !important;
+        font-size: 18px;
+        font-weight: 800;
+    }
     .stButton > button:hover {
-        background: linear-gradient(90deg, #d96816, #e98524);
-        color: white;
+        background: linear-gradient(90deg, #f06a0a, #ff9000);
         border: none;
-        transform: translateY(-1px);
-        box-shadow: 0 5px 14px rgba(221,112,27,0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(255,122,24,0.45);
     }
-    .stButton > button:active {
-        transform: translateY(0);
+    .stButton > button:active {transform: translateY(0);}
+
+    /* ---------- Audio input and alerts ---------- */
+    div[data-testid="stAudioInput"] {border-radius: 14px;}
+    div[data-testid="stAlert"] {
+        border-radius: 14px;
+        background: #ffffff;
+        border: 1.5px solid #cfe3d6;
     }
+    div[data-testid="stAlert"] * {color: #1f3d2b !important;}
 
-    /* Audio input and alerts */
-    div[data-testid="stAudioInput"] {border-radius: 12px;}
-    div[data-testid="stAlert"] {border-radius: 12px;}
-
-    /* How-it-works step cards */
+    /* ---------- Steps ---------- */
     .step-card {
-        border-radius: 15px;
-        padding: 19px 10px;
+        border-radius: 20px;
+        padding: 24px 12px;
         text-align: center;
-        min-height: 135px;
+        min-height: 160px;
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.14);
         transition: transform 0.2s ease;
     }
-    .step-card:hover {transform: translateY(-3px);}
-    .step-icon {font-size: 30px; margin-bottom: 8px;}
-    .step-title {font-weight: 700; font-size: 15px;}
-    .step-description {font-size: 12px; margin-top: 7px; color: #68736c;}
+    .step-card:hover {transform: translateY(-4px);}
+    .step-num {
+        display: inline-block;
+        width: 26px; height: 26px; line-height: 26px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.95);
+        font-size: 13px; font-weight: 800;
+        margin-bottom: 6px;
+    }
+    .step-icon {font-size: 34px; margin-bottom: 6px;}
+    .step-title {font-weight: 800; font-size: 17px; color: #ffffff !important;}
+    .step-description {
+        font-size: 13px; margin-top: 6px;
+        color: #ffffff !important;
+        opacity: 0.95;
+    }
 
-    /* Footer */
+    /* ---------- Footer ---------- */
     .custom-footer {
         text-align: center;
-        padding: 22px 12px 5px 12px;
-        color: #738078;
+        padding: 10px 12px 4px 12px;
         font-size: 13px;
         line-height: 1.8;
     }
-    .footer-brand {color: #254c35; font-size: 19px; font-weight: 800;}
+    .custom-footer p {color: #55665b !important; margin: 6px 0;}
+    .footer-brand {color: #0f4c3a !important; font-size: 21px; font-weight: 800;}
 
     </style>
     """
@@ -187,16 +305,21 @@ render_html(
 # ==================================================
 
 render_html(
-    """
+    f"""
     <div class="hero">
-        <div class="hero-icon">🇮🇳</div>
-        <h1 class="hero-title">Yojana Saathi</h1>
+        <div class="hero-badge">{chakra_svg(58)}</div>
+        <div class="hero-title">Yojana Saathi</div>
         <div class="hero-subtitle">आपकी सरकारी योजनाओं का साथी</div>
         <div class="hero-description">
             सरकारी योजनाओं की जानकारी अब आपकी अपनी भाषा में।
             <br>
             बस अपनी समस्या बोलिए और जानिए आपके लिए
             कौन-सी योजना उपयोगी हो सकती है।
+        </div>
+        <div class="chip-row">
+            <span class="chip">🗣️ हिंदी और Hinglish</span>
+            <span class="chip">🔊 आवाज़ में जवाब</span>
+            <span class="chip">🆓 पूरी तरह मुफ़्त</span>
         </div>
     </div>
     <div class="tricolour"></div>
@@ -226,7 +349,16 @@ with st.container(border=True):
 
     audio_input = st.audio_input("अपनी आवाज़ रिकॉर्ड करें")
 
-    st.caption("उदाहरण: मुझे खेती के लिए सरकारी सहायता चाहिए।")
+    render_html(
+        """
+        <div class="example-label">💡 आप ऐसे बोल सकते हैं:</div>
+        <span class="example-chip">🌾 खेती के लिए सरकारी सहायता चाहिए</span>
+        <span class="example-chip">🎓 पढ़ाई के लिए छात्रवृत्ति</span>
+        <span class="example-chip">🏠 घर बनाने के लिए योजना</span>
+        <span class="example-chip">🏥 इलाज के लिए मदद</span>
+        <span class="example-chip">👩 महिलाओं के लिए योजना</span>
+        """
+    )
 
     process_button = st.button(
         "🔍 जानकारी प्राप्त करें",
@@ -237,8 +369,6 @@ with st.container(border=True):
 # ==================================================
 # 6. AUDIO PROCESSING AND RESPONSE
 # ==================================================
-# Note: st.stop() was replaced with if/else so the "How it works" section
-# and footer still appear even when the voice is not understood.
 
 if process_button and audio_input is None:
 
@@ -311,7 +441,7 @@ elif process_button and audio_input is not None:
 # 7. HOW IT WORKS
 # ==================================================
 
-st.markdown("---")
+render_html('<div class="tricolour"></div>')
 
 render_html(
     """
@@ -327,9 +457,10 @@ col1, col2, col3 = st.columns(3)
 with col1:
     render_html(
         """
-        <div class="step-card" style="background:#fff1e2;">
+        <div class="step-card" style="background:linear-gradient(135deg,#ff7a18,#ffa63d);">
+            <div class="step-num" style="color:#c2570c;">1</div>
             <div class="step-icon">🎙️</div>
-            <div class="step-title" style="color:#a95513;">अपनी बात कहें</div>
+            <div class="step-title">अपनी बात कहें</div>
             <div class="step-description">हिंदी में सवाल पूछें।</div>
         </div>
         """
@@ -338,9 +469,10 @@ with col1:
 with col2:
     render_html(
         """
-        <div class="step-card" style="background:#edf4ff;">
+        <div class="step-card" style="background:linear-gradient(135deg,#2563eb,#4f9bff);">
+            <div class="step-num" style="color:#1d4ed8;">2</div>
             <div class="step-icon">📚</div>
-            <div class="step-title" style="color:#285c91;">योजना खोजें</div>
+            <div class="step-title">योजना खोजें</div>
             <div class="step-description">संबंधित योजना की जानकारी पाएं।</div>
         </div>
         """
@@ -349,9 +481,10 @@ with col2:
 with col3:
     render_html(
         """
-        <div class="step-card" style="background:#eaf7ed;">
+        <div class="step-card" style="background:linear-gradient(135deg,#0f8a3c,#35b565);">
+            <div class="step-num" style="color:#0b6b2e;">3</div>
             <div class="step-icon">🔊</div>
-            <div class="step-title" style="color:#24723b;">जवाब सुनें</div>
+            <div class="step-title">जवाब सुनें</div>
             <div class="step-description">अपनी भाषा में जवाब सुनें।</div>
         </div>
         """
@@ -363,10 +496,10 @@ with col3:
 # ==================================================
 
 render_html(
-    """
-    <div class="tricolour"></div>
+    f"""
+    <div class="tricolour" style="margin-top:34px;"></div>
     <div class="custom-footer">
-        <div style="font-size:25px;">🇮🇳</div>
+        <div>{chakra_svg(40)}</div>
         <div class="footer-brand">Yojana Saathi</div>
         <p>सरकारी योजनाओं की जानकारी, अब आपकी भाषा में।</p>
         <p>
@@ -374,7 +507,7 @@ render_html(
             पात्रता, आवेदन प्रक्रिया और लाभ की पुष्टि
             संबंधित आधिकारिक सरकारी स्रोतों से अवश्य करें।
         </p>
-        <p style="margin-top:15px;">Made with ❤️ for India</p>
+        <p style="margin-top:14px;">Made with ❤️ for India</p>
     </div>
     """
 )
