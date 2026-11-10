@@ -96,57 +96,6 @@ Yojana-Saathi/
 └── test files
 ```
 
-## ⚙️ Installation and Setup
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR-USERNAME/Yojana-Saathi.git
-cd Yojana-Saathi
-```
-
-### 2. Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure your API key
-
-Create a `.env` file in the project root directory.
-
-Add your Gnani AI API key:
-
-```env
-GNANI_API_KEY=your_gnani_api_key_here
-```
-
-**Important:** Never upload your actual `.env` file or API key to GitHub.
-
-### 5. Run the application
-
-```bash
-python -m streamlit run app.py
-```
-
-The application will open in your browser, usually at:
-
-```text
-http://localhost:8501
-```
-
 ## 🧪 Testing
 
 The project includes separate test scripts for different components:
